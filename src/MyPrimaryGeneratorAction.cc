@@ -36,52 +36,30 @@
 #include "G4PrimaryParticle.hh"
 #include "G4PrimaryVertex.hh"
 #include "G4SystemOfUnits.hh"
+#include "G4GeneralParticleSource.hh"
 #include "G4ios.hh"
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 MyPrimaryGeneratorAction::MyPrimaryGeneratorAction()
-: G4VUserPrimaryGeneratorAction()
-{}
+: G4VUserPrimaryGeneratorAction(),
+  fParticleGun(0)
+{
+	fParticleGun = new G4GeneralParticleSource();
+}
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 MyPrimaryGeneratorAction::~MyPrimaryGeneratorAction()
-{}
+{
+	delete fParticleGun;
+}
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 void MyPrimaryGeneratorAction::GeneratePrimaries(G4Event* event)
 {
-  //this function is called at the begining of ecah event
-  //
-
-  // Define particle properties
-  G4String particleName = "alpha";
-  //G4String particleName = "geantino";
-  G4ThreeVector position(0, 0, 8.49*mm);   
-  G4ThreeVector momentum(0, 0, -5.*MeV);
-  G4double time = 0;
-  
-  // Get particle definition from G4ParticleTable
-  G4ParticleTable* particleTable = G4ParticleTable::GetParticleTable();
-  G4ParticleDefinition* particleDefinition 
-    = particleTable->FindParticle(particleName);
-  if ( ! particleDefinition ) {
-    G4cerr << "Error: " << particleName << " not found in G4ParticleTable" << G4endl;
-    exit(1);
-  }  
-    
-  // Create primary particle
-  G4PrimaryParticle* primaryParticle = new G4PrimaryParticle(particleDefinition);
-  primaryParticle->SetMomentum(momentum.x(), momentum.y(), momentum.z());
-  primaryParticle->SetMass(particleDefinition->GetPDGMass());
-  primaryParticle->SetCharge( particleDefinition->GetPDGCharge());
-
-  // Create vertex 
-  G4PrimaryVertex* vertex = new G4PrimaryVertex(position, time);
-  vertex->SetPrimary(primaryParticle);
-  event->AddPrimaryVertex(vertex);
+  fParticleGun->GeneratePrimaryVertex(event);
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

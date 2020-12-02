@@ -33,6 +33,7 @@
 
 #include "G4VUserPrimaryGeneratorAction.hh"
 
+class G4GeneralParticleSource;
 class G4Event;
 
 /// The first primary generator action class.
@@ -44,7 +45,9 @@ class MyPrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
     virtual ~MyPrimaryGeneratorAction();
 
     // method from the base class
-    virtual void GeneratePrimaries(G4Event*);         
+    virtual void GeneratePrimaries(G4Event*);   
+  private:
+    G4GeneralParticleSource* fParticleGun;      
 };
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

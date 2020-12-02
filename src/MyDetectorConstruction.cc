@@ -93,7 +93,7 @@ G4VPhysicalVolume* MyDetectorConstruction::Construct()
   G4Box* worldS = new G4Box("World", hx, hy, hz); 
       
   G4LogicalVolume* worldLV                         
-    = new G4LogicalVolume(worldS, vacuum, "World");
+    = new G4LogicalVolume(worldS, air, "World");
                                    
   G4VPhysicalVolume* worldPV
     = new G4PVPlacement(0,                     //no rotation
@@ -200,6 +200,7 @@ G4VPhysicalVolume* MyDetectorConstruction::Construct()
 	rmax = 3.5*mm; // diam 7mm
 	G4double hgap = 1.*mm; //source non collée à la fenêtre d'entrée
 	G4double hsource = 0.25*mm; // source d'épaisseur 0.5mm
+	G4double hdelta = 0.2*mm; // petit delta pour ne pas superposer la source réelle et sa modélisation
 	phimin = 0.;
 	dphi = 360.*deg;
 
@@ -211,7 +212,7 @@ G4VPhysicalVolume* MyDetectorConstruction::Construct()
     = new G4LogicalVolume(sourceS, steel, "Source");
 
   new G4PVPlacement(0, 
-                    G4ThreeVector(0,0,hdiode+2.*hvide+2.*hbutee+hsource+hgap),
+                    G4ThreeVector(0,0,hdiode+2.*hvide+2.*hbutee+hsource+hgap+hdelta),
                     sourceLV,                //its logical volume
                     "Source",                //its name
                     worldLV,               //its mother  volume
