@@ -43,23 +43,23 @@
 
 MyPrimaryGeneratorAction::MyPrimaryGeneratorAction()
 : G4VUserPrimaryGeneratorAction(),
-  fParticleGun(0)
+  fgps(0)
 {
-	fParticleGun = new G4GeneralParticleSource();
+	fgps = new G4GeneralParticleSource();
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 MyPrimaryGeneratorAction::~MyPrimaryGeneratorAction()
 {
-	delete fParticleGun;
+	delete fgps;
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 void MyPrimaryGeneratorAction::GeneratePrimaries(G4Event* event)
 {
-  fParticleGun->GeneratePrimaryVertex(event);
+  fgps->GeneratePrimaryVertex(event);
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

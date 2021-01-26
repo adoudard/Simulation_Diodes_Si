@@ -32,12 +32,12 @@
 #
 # Specify view angle:
 /vis/viewer/set/viewpointVector -1 0 0
-/vis/viewer/set/lightsVector -1 0 0
+/vis/viewer/set/lightsVector -1 0 1
 #
 # Specify style (surface, wireframe, auxiliary edges,...)
-/vis/viewer/set/style wireframe
+/vis/viewer/set/style surface
 /vis/viewer/set/auxiliaryEdge true
-/vis/viewer/set/lineSegmentsPerCircle 100
+/vis/viewer/set/lineSegmentsPerCircle 200
 #
 # Draw smooth trajectories at end of event, showing trajectory points
 # as markers 2 pixels wide:
@@ -71,10 +71,13 @@
 #
 # To get nice view
 /vis/geometry/set/visibility World 0 false
-/vis/geometry/set/colour DiodePleine 0 green
-/vis/geometry/set/colour Entree 0 green
+/vis/geometry/set/colour DiodePleine 0 grey
+/vis/geometry/set/colour Entree 0 grey
 /vis/geometry/set/colour Cible 0 blue
+/vis/geometry/set/colour Ion 0 orange
 /vis/geometry/set/colour Butee 0 grey
+/vis/geometry/set/colour Support 0 grey
+/vis/geometry/set/colour Tunnel 0 red
 /vis/geometry/set/colour Source 0 yellow
 #
 # Re-establish auto refreshing and verbosity:

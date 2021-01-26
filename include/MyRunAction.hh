@@ -23,43 +23,43 @@
 // * acceptance of all terms of the Geant4 Software license.          *
 // ********************************************************************
 //
-// $Id$
-//
-/// \file MyEventAction.hh
-/// \brief Definition of the MyEventAction class
+// 
+/// \file MyRunAction.hh
+/// \brief Definition of the MyRunAction class
 
-#ifndef MyEventAction_h
-#define MyEventAction_h 1
+#ifndef MyRunAction_h
+#define MyRunAction_h 1
 
-#include "G4UserEventAction.hh"
-
-#include "G4THitsMap.hh"
+#include "G4UserRunAction.hh"
 #include "globals.hh"
 
+class G4Run;
 
-/// Event action class
+/// Run action class
+///
+/// It accumulates statistic and computes dispersion of the energy deposit 
+/// and track lengths of charged particles with use of analysis tools:
+/// H1D histograms are created in BeginOfRunAction() for the following 
+/// physics quantities:
+/// - Edep in cible
+/// The same values are also saved in the ntuple.
+/// The histograms and ntuple are saved in the output file in a format
+/// accoring to a selected technology in B4Analysis.hh.
+///
+/// In EndOfRunAction(), the accumulated statistic and computed 
+/// dispersion is printed.
+///
 
-class MyEventAction : public G4UserEventAction
+class MyRunAction : public G4UserRunAction
 {
   public:
-    MyEventAction();
-    virtual ~MyEventAction();
+    MyRunAction();
+    virtual ~MyRunAction();
 
-    virtual void  BeginOfEventAction(const G4Event* event);
-    virtual void    EndOfEventAction(const G4Event* event);
-    
-  private:
-  	//methods
-  	G4THitsMap<G4double>* GetHitsCollection(G4int hcID, const G4Event* event) const;
-  	G4double GetSum(G4THitsMap<G4double>* hitsMap) const;
-  	void PrintEventStatistics(G4double Edep) const;
-  	
-  	//data members
-  	G4int fEdepHCID;
+    virtual void BeginOfRunAction(const G4Run*);
+    virtual void   EndOfRunAction(const G4Run*);
 };
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 #endif
-
-    

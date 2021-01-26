@@ -47,7 +47,7 @@ class MyPrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
     // method from the base class
     virtual void GeneratePrimaries(G4Event*);   
   private:
-    G4GeneralParticleSource* fParticleGun;      
+    G4GeneralParticleSource* fgps;      
 };
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

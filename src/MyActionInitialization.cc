@@ -23,13 +23,13 @@
 // * acceptance of all terms of the Geant4 Software license.          *
 // ********************************************************************
 //
-// $Id: MyActionInitialization.cc 68058 2013-03-13 14:47:43Z gcosmo $
 //
 /// \file MyActionInitialization.cc
 /// \brief Implementation of the MyActionInitialization class
 
 #include "MyActionInitialization.hh"
 #include "MyPrimaryGeneratorAction.hh"
+#include "MyRunAction.hh"
 #include "MyEventAction.hh"
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
@@ -48,7 +48,9 @@ MyActionInitialization::~MyActionInitialization()
 void MyActionInitialization::Build() const
 {
   SetUserAction(new MyPrimaryGeneratorAction);
+  SetUserAction(new MyRunAction);
   SetUserAction(new MyEventAction);
+  
 }  
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

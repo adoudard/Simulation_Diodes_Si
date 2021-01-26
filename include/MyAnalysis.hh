@@ -23,43 +23,15 @@
 // * acceptance of all terms of the Geant4 Software license.          *
 // ********************************************************************
 //
-// $Id$
 //
-/// \file MyEventAction.hh
-/// \brief Definition of the MyEventAction class
+/// \file MyAnalysis.hh
+/// \brief Selection of the analysis technology
 
-#ifndef MyEventAction_h
-#define MyEventAction_h 1
+#ifndef MyAnalysis_h
+#define MyAnalysis_h 1
 
-#include "G4UserEventAction.hh"
-
-#include "G4THitsMap.hh"
-#include "globals.hh"
-
-
-/// Event action class
-
-class MyEventAction : public G4UserEventAction
-{
-  public:
-    MyEventAction();
-    virtual ~MyEventAction();
-
-    virtual void  BeginOfEventAction(const G4Event* event);
-    virtual void    EndOfEventAction(const G4Event* event);
-    
-  private:
-  	//methods
-  	G4THitsMap<G4double>* GetHitsCollection(G4int hcID, const G4Event* event) const;
-  	G4double GetSum(G4THitsMap<G4double>* hitsMap) const;
-  	void PrintEventStatistics(G4double Edep) const;
-  	
-  	//data members
-  	G4int fEdepHCID;
-};
-
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
+#include "g4root.hh"
+//#include "g4csv.hh"
+//#include "g4xml.hh"
 
 #endif
-
-    

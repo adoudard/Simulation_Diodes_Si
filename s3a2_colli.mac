@@ -1,0 +1,89 @@
+# Source 3 alphas circulaire
+#
+/run/initialize
+#
+# beam 1 : 239Pu
+# 
+/gps/source/intensity 1.
+#
+/gps/ion 94 239
+/gps/energy 0.0 eV
+/gps/pos/type Plane
+/gps/pos/shape Circle
+#
+# the emission source is 2D circle planar
+/gps/pos/shape Circle 
+/gps/pos/centre 0. 0. 77500 um
+/gps/pos/radius 3.5 mm
+#
+# the beam is travelling along the minus z_axis, 2Pi uniform distrib
+
+/gps/ang/type iso  
+/gps/ang/mintheta 0. deg
+/gps/ang/maxtheta 10. deg
+/gps/ang/minphi 0. deg
+/gps/ang/maxphi 360. deg
+#  
+# 
+/gps/source/add 0.9916
+#
+/gps/ion 95 241
+/gps/energy 0.0 eV
+/gps/pos/type Plane
+/gps/pos/shape Circle
+#
+# the emission source is 2D circle planar
+/gps/pos/shape Circle 
+/gps/pos/centre 0. 0. 77500 um
+/gps/pos/radius 3.5 mm
+#
+# the beam is travelling along the minus z_axis, 2Pi uniform distrib
+
+/gps/ang/type iso  
+/gps/ang/mintheta 0. deg
+/gps/ang/maxtheta 10. deg
+/gps/ang/minphi 0. deg
+/gps/ang/maxphi 360. deg
+#
+# 
+/gps/source/add 0.8220
+#
+/gps/ion 96 244
+/gps/energy 0.0 eV
+/gps/pos/type Plane
+/gps/pos/shape Circle
+#
+# the emission source is 2D circle planar
+/gps/pos/shape Circle 
+/gps/pos/centre 0. 0. 77500 um
+/gps/pos/radius 3.5 mm
+#
+# the beam is travelling along the minus z_axis, 2Pi uniform distrib
+
+/gps/ang/type iso  
+/gps/ang/mintheta 0. deg
+/gps/ang/maxtheta 10. deg
+/gps/ang/minphi 0. deg
+/gps/ang/maxphi 360. deg
+#
+# Setting cuts
+#
+
+/run/setCut 1. mm
+
+/run/setCutForRegion Detecteur 1 um
+# commands below are independent of gps
+#
+#/analysis/setFileName test31
+#/analysis/h1/set 1 100 200 800 MeV
+#/analysis/h2/set 1 100 -5 5 mm none linear 100 -5 5 mm none linear #x-y
+#/analysis/h2/set 2 100 -5 5 mm none linear 100 -5 5 mm none linear #y-z
+#/analysis/h2/set 3 100 -5 5 mm none linear 100 -5 5 mm none linear #z-x
+#/analysis/h2/set 5 120 0 360 deg none linear 60 60 120 deg none linear
+#
+##/control/execute vis.mac
+##/tracking/verbose 1
+#
+/run/printProgress 10
+#
+/run/beamOn 50
